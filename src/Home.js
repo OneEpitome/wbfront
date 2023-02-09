@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Link } from "react-router-dom";
 
 function Home() {
   const [show, setShow] = useState(false);
+  const [user, setUser] = useState("");
+
+  useEffect(async () => {
+    setUser(await (await fetch("/api/username")).text());
+  }, []);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -37,6 +42,7 @@ function Home() {
           </Button>
         </Modal.Footer>
       </Modal>
+      <h1>로그인한 유저 : {user}</h1>
     </>
   );
 }
