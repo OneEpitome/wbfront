@@ -7,8 +7,11 @@ function Home() {
   const [show, setShow] = useState(false);
   const [user, setUser] = useState("");
 
-  useEffect(async () => {
-    setUser(await (await fetch("/api/username")).text());
+  useEffect(() => {
+    const userSetting = async () => {
+      setUser(await (await fetch("/api/username")).text());
+    };
+    userSetting();
   }, []);
 
   const handleClose = () => setShow(false);
@@ -17,6 +20,20 @@ function Home() {
     <>
       <Button variant="primary" onClick={handleShow}>
         Launch demo modal
+      </Button>
+      <Link to={"/login"}>
+        <Button variant="primary">로그인</Button>
+      </Link>
+      <Link to={"/register"}>
+        <Button variant="primary">회원가입</Button>
+      </Link>
+      <Button
+        variant="primary"
+        onClick={() => {
+          window.location.href = "/api/logout";
+        }}
+      >
+        로그아웃
       </Button>
 
       <Modal show={show} onHide={handleClose}>
@@ -42,7 +59,11 @@ function Home() {
           </Button>
         </Modal.Footer>
       </Modal>
-      <h1>로그인한 유저 : {user}</h1>
+      {user === "anonymousUser" ? (
+        <h1>로그인하세요.</h1>
+      ) : (
+        <h1>로그인한 유저 : {user}</h1>
+      )}
     </>
   );
 }
