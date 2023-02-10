@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import CreateReview from "./CreateReview";
 import Home from "./Home";
 import Login from "./Login";
 import Register from "./Register";
@@ -21,6 +22,10 @@ function Router() {
     {
       path: "/login",
       element: <Login />,
+    },
+    {
+      path: "/create/review",
+      element: <CreateReview />,
     },
   ]);
 
