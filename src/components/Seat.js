@@ -1,7 +1,23 @@
+import { useEffect, useState } from "react";
+import Review from "./Review";
+
 function Seat() {
+  const [reviewList, setReviewList] = useState([]);
+  const getReviewList = async () => {
+    const a = await fetch("/api/seat/1");
+    const b = await a.json();
+    setReviewList(b);
+  };
+
+  useEffect(() => {
+    getReviewList();
+  }, []);
+
   return (
     <>
-      <h1>자리 내용</h1>
+      {reviewList.map((e) => {
+        return <Review review={e} />;
+      })}
     </>
   );
 }

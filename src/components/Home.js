@@ -35,6 +35,9 @@ function Home() {
       >
         로그아웃
       </Button>
+      <Link to={"/create/review"}>
+        <Button variant="primary">리뷰작성</Button>
+      </Link>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
