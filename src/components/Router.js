@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import CreateReview from "./CreateReview";
+import EditReview from "./EditReview";
 import Home from "./Home";
 import Login from "./Login";
 import Register from "./Register";
@@ -26,6 +27,10 @@ function Router() {
     {
       path: "/create/review",
       element: <CreateReview />,
+    },
+    {
+      path: "/edit/review/:reviewId",
+      element: <EditReview />,
     },
   ]);
 
