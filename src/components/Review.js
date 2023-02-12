@@ -1,7 +1,12 @@
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-function Review({ review }) {
+function Review({ review, getReviewList }) {
+  const onClickDeleteBtn = async () => {
+    await fetch("/api/delete/review/" + review.id, { method: "delete" });
+    getReviewList();
+  };
+
   return (
     <>
       <h1>{review.title}</h1>
@@ -10,6 +15,9 @@ function Review({ review }) {
       <Link to={"/edit/review/" + review.id}>
         <Button variant="primary">리뷰 수정</Button>
       </Link>
+      <Button variant="primary" onClick={onClickDeleteBtn}>
+        리뷰 삭제
+      </Button>
     </>
   );
 }

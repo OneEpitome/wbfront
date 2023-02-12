@@ -16,7 +16,7 @@ function Seat() {
   return (
     <>
       {reviewList.map((e) => {
-        return <Review review={e} />;
+        return <Review review={e} getReviewList={getReviewList} />;
       })}
     </>
   );
