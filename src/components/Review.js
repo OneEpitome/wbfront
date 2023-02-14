@@ -7,6 +7,7 @@ function Review({ review, getReviewList }) {
     await fetch("/api/delete/review/" + review.id, { method: "delete" });
     getReviewList();
   };
+  const [imagePath, setImagePath] = useState([]);
 
   const [userId, setUserId] = useState(null);
   useEffect(() => {
@@ -22,7 +23,7 @@ function Review({ review, getReviewList }) {
       <h2>{review.content}</h2>
       <h3>{review.creatorId}</h3>
       <img
-        src={"http://localhost:8080/images/" + review.fileName}
+        src={"http://localhost:3000/api/images/" + review.fileName}
         width="100px"
         height="50px"
       />
